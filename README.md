@@ -1,6 +1,6 @@
 # A.fun.game
 ## About the project
-M&A Board is a board game discovery and recommendation platform designed to help groups find the perfect game for their gaming session.
+A.fun.game is a board game discovery and recommendation platform designed to help groups find the perfect game for their gaming session.
 The main idea is not just to create a board game catalog, but to help users choose a game based on their specific situation and preferences
 
 If you can answer these questions:
