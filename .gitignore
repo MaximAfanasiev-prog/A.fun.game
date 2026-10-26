@@ -19,3 +19,12 @@ venv/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Local catalogue builds and tooling
+catalogue/dist/
+catalogue/.tools/
+catalogue/backups/
+catalogue/artifacts/
+catalogue/note-book.py
+catalogue/test_mysql.py
+*.log

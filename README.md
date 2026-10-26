@@ -2,7 +2,22 @@
 
 ## 🌐 Сайт
 
-https://a-fun-game.streamlit.app/
+Публичный каталог: https://maximafanasiev-prog.github.io/A.fun.game/
+
+Предыдущая Streamlit-версия: https://a-fun-game.streamlit.app/
+
+Текущий каталог находится в `catalogue/`: 72 игры, обложки, поиск, фильтры,
+избранное и случайный выбор. GitHub Pages публикует каталог в режиме просмотра.
+Для обновления данных измените `catalogue/data/catalogue.json` и отправьте изменения
+в `main`; workflow `Publish catalogue` пересоберёт и опубликует сайт.
+
+Локальный запуск: `cd catalogue`, `pip install -r requirements.txt`,
+`python -B app.py --open`. Для подключения MySQL задайте `MYSQL_HOST`,
+`MYSQL_USER`, `MYSQL_PASSWORD`, `MYSQL_DATABASE` в окружении. Пароли не хранятся
+в репозитории. Без MySQL используется сохранённый каталог.
+
+Локальная сборка публичной версии: `python catalogue/build_public.py`.
+В настройках репозитория **Pages → Source** выберите **GitHub Actions**.
 
 ## About the project
 A.fun.game is a board game discovery and recommendation platform designed to help groups find the perfect game for their gaming session.
