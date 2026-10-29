@@ -53,6 +53,16 @@ def check_model(page):
       check(R.evaluate(g,{players:1,weights:{players:0}}).warnings.length===1, 'Zero weight must not suppress caveat');
       check(R.evaluate(g,{}).percent===null, 'No preferences means no invented percentage');
       check(R.evaluate(g,{genre:'стратегическая',weights:{genre:0}}).percent===null, 'Zero contribution means no percentage');
+      check(R.activeKeys({genre:[],mechanic:[]}).length===0, 'Empty multiple choices must be inactive');
+      check(R.evaluate(g,{genre:[],mechanic:[]}).percent===null, 'Empty selections must not add weights or a percentage');
+      const half=R.evaluate(g,{genre:['стратегическая','семейная'],mechanic:['броски кубиков','драфт карт']});
+      check(half.total===16 && half.possible===32 && half.percent===50, 'Each group earns proportional points with a fixed total weight');
+      check(half.parts.every(part=>part.fit===0.5 && part.text.includes('1 из 2')), 'Multiple-choice explanation must count matched choices');
+      const all=R.evaluate({...g,genres:['Стратегическая','Семейная'],mechanics:['Броски кубиков','Драфт карт']},{genre:['стратегическая','семейная'],mechanic:['броски кубиков','драфт карт']});
+      check(all.total===32 && all.percent===100, 'All selected tags matching must get full group weights');
+      check(R.evaluate(g,{genre:['стратегическая',' Стратегическая ','']}).percent===100, 'Duplicate and empty tags must not dilute a match');
+      check(R.evaluate({...g,genres:[]},{genre:['стратегическая','семейная']}).parts[0].unknown, 'Missing genre metadata remains explicit for multi-selection');
+      check(R.evaluate(g,{players:5,genre:['стратегическая','семейная']})===null, 'Player capacity still applies with multi-selection');
       check(R.evaluate({...g,genres:[]},{genre:'стратегическая'}).parts[0].unknown, 'Known titles must not invent missing genres');
       check(R.evaluate({...g,impression:null},{mood:'спокойная'}).parts[0].unknown, 'Known titles must not invent impressions');
       const changed={...g,genres:['Семейная'],impression:'Уютная',level_of_cooperation:'Командное противостояние'};
@@ -82,10 +92,71 @@ def check_model(page):
 
 
 
+def select_preference(page, id_, values):
+    if id_ not in ("genre", "mechanic"):
+        page.locator("#"+id_).select_option(values)
+        return
+    if isinstance(values, str):
+        values = [values]
+    clear=page.locator(f'[data-clear-choices="{id_}"]')
+    if clear.is_visible():
+        clear.click()
+    picker=page.locator("#"+id_+"-picker")
+    if picker.get_attribute("open") is None:
+        picker.locator("summary").click()
+    for value in values:
+        page.locator("#"+id_+"-query").fill(value)
+        page.locator("#"+id_+"-options input[value="+json.dumps(value, ensure_ascii=False)+"]").check()
+    page.locator("#"+id_+"-query").fill("")
+    picker.locator("summary").click()
+
+
+def check_multiple_choices(page):
+    page.locator("#reset").click()
+    select_preference(page,"genre",["стратегическая","экономическая"])
+    select_preference(page,"mechanic",["драфт карт","управление ресурсами"])
+    assert page.evaluate("preferences().genre.length===2 && preferences().mechanic.length===2")
+    expect(page.locator("#genre-selected .multi-chip")).to_have_count(2)
+    expect(page.locator("#mechanic-selected .multi-chip")).to_have_count(2)
+    expect(page.locator("#active-filters button")).to_have_count(4)
+    assert page.evaluate("ranked.length===games.length && ranked[0].possible===32")
+    page.locator('#genre-selected [data-value="стратегическая"]').click()
+    assert page.evaluate("preferences().genre.length===1 && preferences().mechanic.length===2")
+    page.locator('[data-clear-choices="mechanic"]').click()
+    assert page.evaluate("preferences().mechanic.length===0 && preferences().genre.length===1")
+    page.locator('#active-filters [data-remove-choice="genre"]').click()
+    assert page.evaluate("Recommender.activeKeys(preferences()).length===0 && ranked[0].percent===null")
+    expect(page.locator("#best-pick")).not_to_be_visible()
+    page.locator("#genre-picker summary").focus()
+    page.keyboard.press("Enter")
+    expect(page.locator("#genre-query")).to_be_visible()
+    page.locator("#genre-query").fill("небывалый жанр 123")
+    expect(page.locator("#genre-no-match")).to_be_visible()
+    assert page.evaluate("Recommender.activeKeys(preferences()).length===0")
+    page.locator("#genre-query").fill("семейная")
+    page.locator('#genre-options input[value="семейная"]').focus()
+    page.keyboard.press("Space")
+    assert page.evaluate("preferences().genre.includes('семейная')")
+    page.keyboard.press("Escape")
+    expect(page.locator("#genre-query")).not_to_be_visible()
+    expect(page.locator("#genre-picker summary")).to_be_focused()
+    page.locator("#genre-picker summary").click()
+    page.locator("#mechanic-picker summary").click()
+    expect(page.locator("#genre-query")).not_to_be_visible()
+    expect(page.locator("#mechanic-query")).to_be_visible()
+    page.locator("#reset").click()
+    assert page.evaluate("!preferences().genre.length && !preferences().mechanic.length && !document.querySelector('#mechanic-picker').open")
+    assert page.locator("#genre-query").input_value()==""
+    expect(page.locator("#available").locator("..")).to_have_text("Игры в наличии")
+    expect(page.locator("#favorites-only").locator("..")).to_have_text("Мои избранные")
+    print("PASS multi-select: two genres and mechanics, proportional weights, chips, removal, clear, search, empty search, keyboard, Escape, reset, labels")
+
+
 def check_browser(page):
     expect(page.locator(".game")).to_have_count(12)
     expect(page.locator("#add-open")).to_be_disabled()
     check_model(page)
+    check_multiple_choices(page)
     page.locator('[data-preset="coop"]').click()
     expect(page.locator(".game")).to_have_count(6)
     assert page.locator("#format").input_value() == "coop"
@@ -99,16 +170,16 @@ def check_browser(page):
     for preset in ("duo", "quick", "party", "easy", "strategy"):
         page.locator(f'[data-preset="{preset}"]').click()
         assert page.locator(f'[data-preset="{preset}"]').get_attribute("aria-pressed") == "true"
-        assert page.evaluate("Object.entries(presets[preset]).every(([key,val])=>document.getElementById(key).value===val)")
+        assert page.evaluate("Object.entries(presets[preset]).every(([key,val])=>multiFields.includes(key)?multiValues(key).join()===Recommender.choices(val).join():document.getElementById(key).value===val)")
         assert page.evaluate("ranked.every((r,i)=>!i||ranked[i-1].total>=r.total)")
-    page.locator("#genre").select_option("детективная")
+    select_preference(page,"genre","детективная")
     assert page.locator('[data-preset][aria-pressed="true"]').count() == 0
 
     page.locator("#reset").click()
     page.locator("#players").select_option("4")
     before = page.evaluate("ranked.length")
     for selector, value in (("minutes", "15"), ("rules", "5"), ("rulesDifficulty", "1"), ("genre", "экономическая"), ("format", "coop"), ("mood", "социальная"), ("mechanic", "драфт карт")):
-        page.locator("#" + selector).select_option(value)
+        select_preference(page,selector,value)
         assert page.evaluate("ranked.length") == before
     page.locator("#available").check()
     page.locator("#favorites-only").check()
@@ -133,7 +204,7 @@ def check_browser(page):
     page.locator("#reset").click()
     page.locator("#players").select_option("1")
     assert page.evaluate("ranked.length===games.length")
-    page.locator("#genre").select_option("вечериночная")
+    select_preference(page,"genre","вечериночная")
     assert page.locator(".match-warning").count() > 0
 
     for id_, choices in (("genre", "genres"), ("format", "formats"), ("mood", "moods"), ("mechanic", "mechanics")):
@@ -141,19 +212,19 @@ def check_browser(page):
         values = page.evaluate(f"Object.keys(Recommender.{choices})")
         for value in values if id_ == "format" else values[:3]:
             page.locator("#reset").click()
-            page.locator("#"+id_).select_option(value)
+            select_preference(page,id_,value)
             assert page.evaluate("ranked[0].percent===100"), (id_, value)
             assert page.evaluate("ranked.length===games.length")
 
     page.locator("#reset").click()
-    page.locator("#genre").select_option("стратегическая")
+    select_preference(page,"genre","стратегическая")
     page.locator(".weight-settings summary").click()
     page.locator("#weight-genre").fill("0")
     assert page.evaluate("weights.genre===0 && ranked.every(r=>r.percent===null)")
     page.locator("#weights-reset").click()
     assert page.evaluate("weights.genre===24 && ranked[0].percent===100")
     page.locator("#reset").click()
-    expect(page.locator("#genre")).to_have_value("")
+    assert page.evaluate("multiValues('genre').length===0")
     expect(page.locator("#difficulty")).to_have_value("0")
     assert page.locator("#weight-genre").input_value() == "24"
     page.locator(".weight-settings summary").click()
@@ -181,14 +252,27 @@ def check_browser(page):
     page.locator(".cover img").evaluate_all("images=>images.forEach(img=>img.loading='eager')")
     page.wait_for_function("[...document.images].every(img=>img.complete&&img.naturalWidth>0)")
 
+    select_preference(page,"genre",["семейная","стратегическая"])
+    select_preference(page,"mechanic",["драфт карт","управление ресурсами"])
     for width in (360, 390, 768, 1024, 1440):
         page.set_viewport_size({"width": width, "height": 1000})
         assert page.evaluate("document.documentElement.scrollWidth<=innerWidth"), f"Overflow at {width}"
         assert page.evaluate("[...document.querySelectorAll('.workspace, .cards, .best-pick, aside')].every(e=>e.getBoundingClientRect().right<=innerWidth)"), f"Offscreen content at {width}"
+        for id_ in ("genre","mechanic"):
+            page.locator("#"+id_+"-picker summary").click()
+            assert page.locator("#"+id_+"-picker .multi-panel").evaluate("e=>{const r=e.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth}"), f"Dropdown offscreen: {id_} at {width}"
+            page.wait_for_function("id=>{const r=document.querySelector('#'+id+'-picker .multi-panel').getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight}",arg=id_)
+            page.locator("#"+id_+"-picker summary").click()
     page.set_viewport_size({"width": 1440, "height": 1100})
     page.screenshot(path=str(ROOT/"artifacts"/"recommendations-desktop.png"), full_page=True)
+    page.locator("#genre-picker summary").click()
+    page.screenshot(path=str(ROOT/"artifacts"/"multi-select-desktop.png"))
+    page.locator("#genre-picker summary").click()
     page.set_viewport_size({"width": 390, "height": 844})
     page.screenshot(path=str(ROOT/"artifacts"/"recommendations-mobile.png"), full_page=True)
+    page.locator("#mechanic-picker summary").click()
+    page.screenshot(path=str(ROOT/"artifacts"/"multi-select-mobile.png"))
+    page.locator("#mechanic-picker summary").click()
     print("PASS browser: presets, every genre/format/mood, weights, soft preferences, search, favorites, details, keyboard, random top 3, pagination, images, responsive layout")
 
 
@@ -218,6 +302,9 @@ def main():
                 page.locator('[data-preset="coop"]').click()
                 expect(page.locator(".game")).to_have_count(6)
                 assert page.evaluate("ranked[0].tags.format==='coop'")
+                select_preference(page,"genre",["семейная","стратегическая"])
+                select_preference(page,"mechanic",["драфт карт","управление ресурсами"])
+                assert page.evaluate("preferences().genre.length===2 && preferences().mechanic.length===2 && ranked.length===games.length")
                 page.locator(".cover img").evaluate_all("images=>images.forEach(img=>img.loading='eager')")
                 page.wait_for_function("[...document.images].every(img=>img.complete&&img.naturalWidth>0)")
                 print("PASS public build: subdirectory paths, recommender script, images, weighted recommendations")

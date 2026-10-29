@@ -12,10 +12,49 @@ const presets = {
   coop:{format:"coop",mood:"приключенческая",minutes:"90"},
   strategy:{genre:"стратегическая",difficulty:"7",minutes:"120",mood:"спокойная"}
 };
+const multiFields=["genre","mechanic"];
+function multiValues(id) {return [...document.querySelectorAll("#"+id+"-options input:checked")].map(input=>input.value);}
+function setMulti(id,values) {
+  const selected=new Set(R.choices(values));
+  document.querySelectorAll("#"+id+"-options input").forEach(input=>input.checked=selected.has(input.value));
+}
+function choiceChip(id,value,className) {
+  const names=id==="genre"?R.genres:R.mechanics,label=names[value]||value;
+  const chip=document.createElement("button");chip.type="button";chip.className=className;
+  chip.dataset.removeChoice=id;chip.dataset.value=value;
+  chip.setAttribute("aria-label","Убрать "+(id==="genre"?"жанр: ":"механику: ")+label);
+  chip.append(document.createTextNode(label));
+  const cross=document.createElement("span");cross.textContent="×";cross.setAttribute("aria-hidden","true");chip.append(cross);
+  return chip;
+}
+function syncMulti() {
+  for(const id of multiFields) {
+    const selected=multiValues(id),picker=$("#"+id+"-picker");
+    $("#"+id+"-summary").textContent=selected.length?"Выбрано: "+selected.length:id==="genre"?"Выбрать жанры":"Выбрать механики";
+    picker.classList.toggle("has-selection",selected.length>0);
+    document.querySelector('[data-clear-choices="'+id+'"]').hidden=!selected.length;
+    $("#"+id+"-selected").replaceChildren(...selected.map(value=>choiceChip(id,value,"multi-chip")));
+  }
+}
+function filterChoices(id) {
+  const query=$("#"+id+"-query").value.toLocaleLowerCase("ru").replace(/ё/g,"е").trim();
+  let visible=0;
+  document.querySelectorAll("#"+id+"-options label").forEach(option=>{
+    option.hidden=!option.dataset.search.includes(query);if(!option.hidden)visible++;
+  });
+  $("#"+id+"-no-match").hidden=visible>0;
+}
+function placeChoices(id) {
+  const picker=$("#"+id+"-picker");if(!picker.open)return;
+  const bounds=picker.querySelector("summary").getBoundingClientRect();
+  const below=window.innerHeight-bounds.bottom-16,above=bounds.top-16,up=below<335&&above>below;
+  picker.classList.toggle("opens-up",up);
+  picker.style.setProperty("--choices-height",Math.max(60,Math.min(230,(up?above:below)-110))+"px");
+}
 function preferences() {
   return {players:+$("#players").value,minutes:+$("#minutes").value,rules:+$("#rules").value,
-    difficulty:+$("#difficulty").value,genre:$("#genre").value,format:$("#format").value,
-    mood:$("#mood").value,mechanic:$("#mechanic").value,rulesDifficulty:+$("#rulesDifficulty").value,available:$("#available").checked,
+    difficulty:+$("#difficulty").value,genre:multiValues("genre"),format:$("#format").value,
+    mood:$("#mood").value,mechanic:multiValues("mechanic"),rulesDifficulty:+$("#rulesDifficulty").value,available:$("#available").checked,
     favorites:$("#favorites-only").checked,search:$("#search").value.trim(),weights};
 }
 function cover(g) {
@@ -27,6 +66,7 @@ function time(g) {return g.max_play_time == null ? "—" : g.min_play_time && g.
 function decimal(n) {return new Intl.NumberFormat("ru",{maximumFractionDigits:1}).format(n);}
 function reset(shouldRender=true) {
   HTMLFormElement.prototype.reset.call($("#filters"));
+  for(const id of multiFields) {$("#"+id+"-query").value="";$("#"+id+"-picker").open=false;filterChoices(id);}
   weights=R.defaults();syncWeights();$("#search").value="";$("#sort").value="match";preset="all";limit=12;
   if(shouldRender)render();
 }
@@ -44,9 +84,10 @@ function matchMarkup(item) {
 }
 function render() {
   const p=preferences(),active=R.activeKeys(p),matching=active.length>0;
+  syncMulti();
   $("#difficulty-value").textContent=p.difficulty?p.difficulty+" / 9":"Любая";
   document.querySelectorAll("[data-preset]").forEach(b=>{const selected=b.dataset.preset===preset;b.classList.toggle("selected",selected);b.setAttribute("aria-pressed",String(selected));});
-  for(const key of Object.keys(R.criteria))$("#weight-"+key).closest("label").classList.toggle("weight-inactive",!p[key]);
+  for(const key of Object.keys(R.criteria))$("#weight-"+key).closest("label").classList.toggle("weight-inactive",!R.hasPreference(p[key]));
   ranked=R.rank(games,p,favorites);
   let display=[...ranked],sort=$("#sort").value;
   if(sort==="title")display.sort((a,b)=>a.game.game_title.localeCompare(b.game.game_title,"ru"));
@@ -58,25 +99,40 @@ function render() {
   if(excluded)$("#count").textContent+=" · "+excluded+" не вмещают компанию";
   $("#selection-summary").hidden=!matching;
   $("#ranking-note").hidden=!matching;
-  $("#active-filters").replaceChildren(...active.map(key=>{
+  $("#active-filters").replaceChildren(...active.flatMap(key=>{
+    if(multiFields.includes(key))return p[key].map(value=>choiceChip(key,value,"filter-chip"));
     const chip=document.createElement("span");chip.className="filter-chip";
-    const labels={players:p.players+" игроков",minutes:"Партия до "+p.minutes+" мин",rules:"Объяснение до "+p.rules+" мин",rulesDifficulty:"Правила до "+p.rulesDifficulty+"/5",difficulty:"Сложность игры "+p.difficulty+"/9",genre:R.genres[p.genre],format:R.formats[p.format],mood:R.moods[p.mood],mechanic:R.mechanics[p.mechanic],available:"В наличии",favorites:"Избранное",search:"Поиск: "+p.search};
-    chip.textContent=labels[key];return chip;
+    const labels={players:p.players+" игроков",minutes:"Партия до "+p.minutes+" мин",rules:"Объяснение до "+p.rules+" мин",rulesDifficulty:"Правила до "+p.rulesDifficulty+"/5",difficulty:"Сложность игры "+p.difficulty+"/9",format:R.formats[p.format],mood:R.moods[p.mood],available:"Игры в наличии",favorites:"Мои избранные",search:"Поиск: "+p.search};
+    chip.textContent=labels[key];return [chip];
   }));
   const best=ranked[0],hero=$("#best-pick");
   hero.hidden=!matching||!best||sort!=="match";
   if(!hero.hidden) {
     const positive=highlights(best),message=best.total===0?"Точных совпадений нет. Это ближайший вариант; посмотрите, чем он отличается.":best.warnings.length?best.warnings.join(". "):positive.map(p=>p.text).join(" · ");
     hero.classList.toggle("best-caution",best.warnings.length>0||best.total===0);
-    hero.innerHTML='<div><p class="eyebrow">'+(best.total===0?"БЛИЖАЙШИЙ ВАРИАНТ":best.warnings.length?"ЛУЧШЕ ПО БАЛЛАМ · ЕСТЬ ОГОВОРКА":"НАШ ВЫБОР ДЛЯ ВАС")+'</p><button data-detail="'+best.game.id+'" class="best-title">'+escapeHTML(best.game.game_title)+' <span>↗</span></button><p>'+escapeHTML(message)+'</p></div><div class="best-score"><strong>'+best.percent+'<small>%</small></strong><span>соответствие</span></div>';
+    hero.innerHTML=(best.game.image_url?'<div class="best-cover"><img src="'+escapeHTML(best.game.image_url)+'" alt="" width="72" height="90"></div>':"")+'<div class="best-copy"><p class="eyebrow">'+(best.total===0?"БЛИЖАЙШИЙ ВАРИАНТ":best.warnings.length?"ЛУЧШЕ ПО БАЛЛАМ · ЕСТЬ ОГОВОРКА":"НАШ ВЫБОР ДЛЯ ВАС")+'</p><button data-detail="'+best.game.id+'" class="best-title">'+escapeHTML(best.game.game_title)+' <span>↗</span></button><p>'+escapeHTML(message)+'</p></div><div class="best-score"><strong>'+best.percent+'<small>%</small></strong><span>соответствие</span></div>';
   }
   $("#empty").hidden=shown.length>0;$("#more").hidden=shown.length<=limit;$("#random").disabled=!shown.length;
   $("#more").textContent="Ещё варианты ("+Math.max(0,shown.length-visible)+") ↓";
-  $("#cards").innerHTML=display.slice(0,limit).map(item=>{
-    const g=item.game,positive=highlights(item),mismatch=item.parts.find(part=>part.fit<0.75);
-    return '<article class="game"><button class="favorite '+(favorites.has(g.id)?"active":"")+'" data-favorite="'+g.id+'" aria-label="'+(favorites.has(g.id)?"Убрать из избранного":"Добавить в избранное")+'" aria-pressed="'+favorites.has(g.id)+'">'+(favorites.has(g.id)?"♥":"♡")+'</button>'+cover(g)+'<div class="game-body"><span class="tag">'+escapeHTML(category(g))+'</span><h3><button data-detail="'+g.id+'">'+escapeHTML(g.game_title)+'</button></h3><div class="genre-tags">'+item.tags.genres.slice(0,2).map(t=>'<span>'+escapeHTML(R.genres[t]||t)+'</span>').join("")+'</div><p class="description">'+escapeHTML(g.description||"Описание скоро появится в каталоге.")+'</p><div class="meta"><span title="Игроки">♙ '+(g.min_players??"?")+'–'+(g.max_players??"?")+'</span><span title="Время партии">◷ '+time(g)+' мин</span><span title="Сложность">◈ '+(g.complexity_of_game??"—")+'/9</span></div><div class="rules-meta">Правила: '+(g.time_for_rules_min==null?'время неизвестно':g.time_for_rules_min+' мин')+'</div>'+matchMarkup(item)+(positive.length?'<p class="match">'+positive.map(part=>'✓ '+escapeHTML(part.text)).join("<br>")+'</p>':"")+(item.warnings.length?'<p class="match-warning">'+escapeHTML(item.warnings.join(". "))+'</p>':mismatch?'<p class="match-difference">'+escapeHTML(mismatch.text)+'</p>':"")+'<button class="card-link" data-detail="'+g.id+'">'+(matching?"Почему подходит":"Об игре")+' <span>↗</span></button></div></article>';
-  }).join("");
+  $("#cards").innerHTML=display.slice(0,limit).map(item=>gameCard(item,p)).join("");
 }
+function gameCard(item,p) {
+  const g=item.game,positive=highlights(item),mismatch=item.parts.find(part=>part.fit<0.75);
+  const chosen=new Set(p.genre),tags=[...item.tags.genres].sort((a,b)=>Number(chosen.has(b))-Number(chosen.has(a)));
+  return '<article class="game">'
+    +'<button class="favorite '+(favorites.has(g.id)?"active":"")+'" data-favorite="'+g.id+'" aria-label="'+(favorites.has(g.id)?"Убрать из избранного":"Добавить в избранное")+'" aria-pressed="'+favorites.has(g.id)+'">'+(favorites.has(g.id)?"♥":"♡")+'</button>'
+    +(item.percent!==null?'<span class="card-score">'+item.percent+'<small>%</small><span>подходит</span></span>':"")+cover(g)
+    +'<div class="game-body"><span class="tag">'+escapeHTML(category(g))+'</span>'
+    +'<h3><button data-detail="'+g.id+'">'+escapeHTML(g.game_title)+'</button></h3>'
+    +'<div class="genre-tags">'+tags.slice(0,3).map(t=>'<span class="'+(chosen.has(t)?"is-selected":"")+'">'+escapeHTML(R.genres[t]||t)+'</span>').join("")+'</div>'
+    +'<p class="description">'+escapeHTML(g.description||"Описание скоро появится в каталоге.")+'</p>'
+    +'<div class="meta"><span title="Игроки">♙ '+(g.min_players??"?")+'–'+(g.max_players??"?")+'</span><span title="Время партии">◷ '+time(g)+' мин</span><span title="Сложность игры">◈ '+(g.complexity_of_game??"—")+'/9</span></div>'
+    +'<div class="rules-meta"><span>Правила: '+(g.rules_difficulty==null?"—":g.rules_difficulty+"/5")+'</span><span>Объяснение: '+(g.time_for_rules_min==null?"—":g.time_for_rules_min+" мин")+'</span></div>'
+    +matchMarkup(item)+(positive.length?'<p class="match">'+positive.map(part=>'✓ '+escapeHTML(part.text)).join("<br>")+'</p>':"")
+    +(item.warnings.length?'<p class="match-warning">'+escapeHTML(item.warnings.join(". "))+'</p>':mismatch?'<p class="match-difference">'+escapeHTML(mismatch.text)+'</p>':"")
+    +'<button class="card-link" data-detail="'+g.id+'">'+(item.percent!==null?"Почему подходит":"Открыть игру")+' <span>↗</span></button></div></article>';
+}
+
 function showDetail(id) {
   const g=games.find(g=>g.id===id);if(!g)return;
   const item=R.evaluate(g,preferences(),favorites),tags=R.profile(g);
@@ -121,7 +177,7 @@ async function load() {
 }
 for(let i=1;i<=20;i++)$("#players").add(new Option(i+" чел.",i));
 function populateChoices() {
-  for(const [id,options] of [["genre",R.genres],["format",R.formats],["mood",R.moods],["mechanic",R.mechanics]]) {
+  for(const [id,options] of [["format",R.formats],["mood",R.moods]]) {
     const select=$("#"+id),previous=select.value;
     while(select.options.length>1)select.remove(1);
     const entries=Object.entries(options);
@@ -129,18 +185,53 @@ function populateChoices() {
     for(const [key,label] of entries)select.add(new Option(label,key));
     if([...select.options].some(option=>option.value===previous))select.value=previous;
   }
+  for(const [id,options,field] of [["genre",R.genres,"genres"],["mechanic",R.mechanics,"mechanics"]]) {
+    const previous=multiValues(id),counts={};
+    for(const game of games)for(const value of R.profile(game)[field])counts[value]=(counts[value]||0)+1;
+    $("#"+id+"-options").replaceChildren(...Object.entries(options).sort((a,b)=>a[1].localeCompare(b[1],"ru")).map(([key,label],index)=>{
+      const option=document.createElement("label");option.className="multi-option";option.dataset.search=key;
+      const input=document.createElement("input");input.type="checkbox";input.value=key;input.name=id;input.dataset.choice=id;input.id=id+"-choice-"+index;
+      const caption=document.createElement("span");caption.textContent=label;
+      const count=document.createElement("small");count.textContent=counts[key]||0;count.title="Игр в коллекции";count.setAttribute("aria-hidden","true");
+      option.append(input,caption,count);return option;
+    }));
+    setMulti(id,previous);filterChoices(id);
+  }
 }
+for(const id of multiFields) {
+  $("#"+id+"-options").addEventListener("change",changed);
+  $("#"+id+"-query").addEventListener("input",()=>filterChoices(id));
+  $("#"+id+"-query").addEventListener("keydown",e=>{if(e.key==="Enter")e.preventDefault();});
+  $("#"+id+"-picker").addEventListener("keydown",e=>{
+    if(e.key==="Escape") {e.preventDefault();$("#"+id+"-picker").open=false;$("#"+id+"-picker summary").focus();}
+  });
+  $("#"+id+"-picker").addEventListener("toggle",()=>{
+    if($("#"+id+"-picker").open) {for(const other of multiFields)if(other!==id)$("#"+other+"-picker").open=false;placeChoices(id);}
+  });
+}
+window.addEventListener("resize",()=>multiFields.forEach(placeChoices));
+document.addEventListener("pointerdown",e=>{
+  for(const id of multiFields)if(!$("#"+id+"-picker").contains(e.target))$("#"+id+"-picker").open=false;
+});
+document.addEventListener("click",e=>{
+  const remove=e.target.closest("[data-remove-choice]"),clear=e.target.closest("[data-clear-choices]");
+  if(!remove&&!clear)return;
+  const id=remove?remove.dataset.removeChoice:clear.dataset.clearChoices;
+  if(!multiFields.includes(id))return;
+  setMulti(id,remove?multiValues(id).filter(value=>value!==remove.dataset.value):[]);
+  changed();$("#"+id+"-picker summary").focus({preventScroll:true});
+});
 $("#weights").innerHTML=Object.entries(R.criteria).map(([key,c])=>'<label for="weight-'+key+'">'+c.label+'<output id="weight-value-'+key+'" for="weight-'+key+'">'+c.weight+'</output><input id="weight-'+key+'" data-weight="'+key+'" type="range" min="0" max="50" value="'+c.weight+'"></label>').join("");
 $("#weights").addEventListener("input",e=>{if(!e.target.dataset.weight)return;weights[e.target.dataset.weight]=+e.target.value;$("#weight-value-"+e.target.dataset.weight).value=e.target.value;changed();});
 $("#weights-reset").onclick=()=>{weights=R.defaults();syncWeights();changed();};
 $("#filters").addEventListener("submit",e=>{e.preventDefault();limit=R.activeKeys(preferences()).length?6:12;render();$("#best-pick").hidden?$("#count").scrollIntoView({block:"nearest"}):$("#best-pick").scrollIntoView({block:"nearest"});});
-["players","minutes","rules","rulesDifficulty","difficulty","genre","format","mood","mechanic","available","favorites-only"].forEach(id=>$("#"+id).addEventListener("input",changed));
+["players","minutes","rules","rulesDifficulty","difficulty","format","mood","available","favorites-only"].forEach(id=>$("#"+id).addEventListener("input",changed));
 $("#sort").addEventListener("change",()=>{limit=R.activeKeys(preferences()).length?6:12;render();});
 $("#search").addEventListener("input",changed);
 $("#reset").onclick=()=>reset();$("#empty-reset").onclick=()=>reset();
 document.querySelectorAll("[data-preset]").forEach(b=>b.onclick=()=>{
   reset(false);preset=b.dataset.preset;
-  for(const [key,value] of Object.entries(presets[preset]))$("#"+key).value=value;
+  for(const [key,value] of Object.entries(presets[preset]))multiFields.includes(key)?setMulti(key,value):$("#"+key).value=value;
   limit=preset==="all"?12:6;render();
 });
 $("#more").onclick=()=>{limit+=6;render();};

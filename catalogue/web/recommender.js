@@ -51,10 +51,14 @@
     }
   }
   const label = (list, key) => list[key] || key;
+  function choices(value) {
+    return [...new Set((Array.isArray(value) ? value : [value]).filter(v=>typeof v==="string").map(norm).filter(Boolean))];
+  }
+  function hasPreference(value) {return Array.isArray(value) ? choices(value).length>0 : Boolean(value);}
 
   function defaults() {return Object.fromEntries(Object.entries(criteria).map(([key, c]) => [key, c.weight]));}
   function activeKeys(preferences) {
-    return Object.keys(criteria).filter(key => Boolean(preferences[key]) && Number(preferences.weights?.[key] ?? criteria[key].weight) > 0);
+    return Object.keys(criteria).filter(key => hasPreference(preferences[key]) && Number(preferences.weights?.[key] ?? criteria[key].weight) > 0);
   }
   const known = value => value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value));
   const norm = value => String(value ?? "").toLocaleLowerCase("ru").replace(/ё/g,"е").replace(/\s+/g," ").trim();
@@ -65,7 +69,7 @@
     if (p.players && known(game.min_players) && +p.players < +game.min_players) warnings.push("Нужно минимум " + game.min_players + " игроков — вас меньше");
     if (p.players && !known(game.max_players)) warnings.push("Максимум игроков не указан — уточните перед партией");
     function add(key, fit, text) {
-      if (!p[key]) return;
+      if (!hasPreference(p[key])) return;
       const weight = Math.max(0, Number(p.weights?.[key] ?? criteria[key].weight) || 0);
       if (!weight) return;
       const unknown = fit == null;
@@ -83,7 +87,14 @@
       }
       add("players", fit, text);
     }
-    add("genre", tags.genres.length ? Number(tags.genres.includes(p.genre)) : null, tags.genres.length ? tags.genres.includes(p.genre) ? "Жанр: " + label(genres,p.genre) : "Другой жанр: " + tags.genres.map(g=>label(genres,g)).join(", ") : "Жанр в базе не указан");
+    function addChoices(key, available, names, caption) {
+      const selected=choices(p[key]), matched=selected.filter(value=>available.includes(value));
+      const description=!available.length ? caption+" в базе не указаны"
+        : selected.length===1 ? matched.length ? caption+": "+label(names,matched[0]) : "Другие "+caption.toLocaleLowerCase("ru")+": "+available.map(value=>label(names,value)).join(", ")
+        : caption+": совпало "+matched.length+" из "+selected.length+(matched.length?" · "+matched.map(value=>label(names,value)).join(", "):" · у игры: "+available.map(value=>label(names,value)).join(", "));
+      add(key,available.length && selected.length ? matched.length/selected.length : null,description);
+    }
+    addChoices("genre",tags.genres,genres,"Жанры");
     add("format", tags.format ? Number(tags.format === p.format || (p.format === "competitive" && tags.format === "duel")) : null, tags.format ? "Формат: " + formats[tags.format] : game.level_of_cooperation ? "Формат не определён: " + game.level_of_cooperation : "Кооперация в базе не указана");
     for (const [key, field, label] of [["minutes","max_play_time","Партия"],["rules","time_for_rules_min","Правила"]]) {
       const value = game[field], target = +p[key];
@@ -92,7 +103,7 @@
     add("difficulty", known(game.complexity_of_game) ? 1 - Math.abs(game.complexity_of_game - p.difficulty) / 8 : null, known(game.complexity_of_game) ? "Сложность " + game.complexity_of_game + "/9 (вы выбрали " + p.difficulty + ")" : "Сложность неизвестна");
     add("rulesDifficulty", known(game.rules_difficulty) ? 1 - Math.max(0, game.rules_difficulty - p.rulesDifficulty) / 4 : null, known(game.rules_difficulty) ? "Сложность правил " + game.rules_difficulty + "/5" + (game.rules_difficulty > p.rulesDifficulty ? " — сложнее желаемого" : " — подходит") : "Сложность правил в базе не указана");
     add("mood", tags.moods.length ? Number(tags.moods.includes(p.mood)) : null, tags.moods.length ? tags.moods.includes(p.mood) ? "Впечатление: " + label(moods,p.mood) : "Другие впечатления: " + tags.moods.map(m=>label(moods,m)).join(", ") : "Впечатления в базе не указаны");
-    add("mechanic", tags.mechanics.length ? Number(tags.mechanics.includes(p.mechanic)) : null, tags.mechanics.length ? tags.mechanics.includes(p.mechanic) ? "Механика: " + label(mechanics,p.mechanic) : "Другие механики: " + tags.mechanics.map(m=>label(mechanics,m)).join(", ") : "Механики в базе не указаны");
+    addChoices("mechanic",tags.mechanics,mechanics,"Механики");
     add("available", known(game.available_now) ? Number(+game.available_now === 1) : null, +game.available_now === 1 ? "В наличии в клубе" : game.available_now === 0 ? "Сейчас нет в наличии" : "Наличие нужно уточнить");
     add("favorites", Number(favorites.has(game.id)), favorites.has(game.id) ? "В вашем избранном" : "Пока не в избранном");
     if (p.search) {
@@ -108,6 +119,6 @@
   function rank(games, preferences, favorites) {
     return games.map(g=>evaluate(g, preferences, favorites)).filter(Boolean).sort((a,b)=>b.total-a.total || a.game.game_title.localeCompare(b.game.game_title,"ru") || a.game.id-b.game.id);
   }
-  root.Recommender = {criteria, genres, formats, moods, mechanics, configure, profile, defaults, activeKeys, evaluate, rank};
+  root.Recommender = {criteria, genres, formats, moods, mechanics, configure, profile, defaults, activeKeys, choices, hasPreference, evaluate, rank};
   if (typeof module !== "undefined" && module.exports) module.exports = root.Recommender;
 })(typeof globalThis === "undefined" ? window : globalThis);
