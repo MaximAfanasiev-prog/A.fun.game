@@ -44,7 +44,30 @@ def fetch_games():
     try:
         cursor = connection.cursor(dictionary=True)
         cursor.execute("SELECT * FROM games ORDER BY game_title")
-        return cursor.fetchall()
+        games = cursor.fetchall()
+        # Normalized genres/mechanics live outside games in the current schema.
+        # Older installations may still have only the original text columns.
+        cursor.execute("SHOW TABLES")
+        tables = {next(iter(row.values())) for row in cursor.fetchall()}
+        by_id = {game["id"]: game for game in games}
+        for game in games:
+            for key, field in (("genres", "genre"), ("mechanics", "mechanics")):
+                value = game.get(field)
+                game[key] = [item.strip() for item in value.split(";") if item.strip()] if isinstance(value, str) else list(value or [])
+        relations = (
+            ("genres", "game_genres", "genres", "SELECT gg.game_id, gr.genre AS value FROM game_genres gg JOIN genres gr ON gr.id=gg.genre_id ORDER BY gg.game_id, gr.genre"),
+            ("mechanics", "game_mechanics", "mechanics", "SELECT gm.game_id, m.mechanic AS value FROM game_mechanics gm JOIN mechanics m ON m.id=gm.mechanic_id ORDER BY gm.game_id, m.mechanic"),
+        )
+        for key, links, lookup, query in relations:
+            if {links, lookup} <= tables:
+                cursor.execute(query)
+                values = {}
+                for row in cursor.fetchall():
+                    if row["game_id"] in by_id and row["value"]:
+                        values.setdefault(row["game_id"], []).append(row["value"])
+                for game_id, items in values.items():
+                    by_id[game_id][key] = sorted(set(items))
+        return games
     finally:
         connection.close()
 
@@ -112,7 +135,7 @@ class Handler(BaseHTTPRequestHandler):
             else:
                 self.reply(404, {"error":"Image not found"})
             return
-        static = {"/": ("index.html", "text/html; charset=utf-8"), "/app.js": ("app.js", "text/javascript; charset=utf-8"), "/style.css": ("style.css", "text/css; charset=utf-8")}
+        static = {"/": ("index.html", "text/html; charset=utf-8"), "/app.js": ("app.js", "text/javascript; charset=utf-8"), "/recommender.js": ("recommender.js", "text/javascript; charset=utf-8"), "/style.css": ("style.css", "text/css; charset=utf-8")}
         if path in static:
             name, mime = static[path]
             self.reply(200, (ROOT / "web" / name).read_bytes(), mime)

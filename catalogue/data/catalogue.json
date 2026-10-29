@@ -17,7 +17,19 @@
     "description": "Игроки развивают цивилизации в течение трёх эпох, строят сооружения, развивают науку, торговлю и армию и возводят чудеса света.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/68448/7-wonders"
+    "source_urls": "https://boardgamegeek.com/boardgame/68448/7-wonders",
+    "genres": [
+      "Еврогейм",
+      "Игра-цивилизация",
+      "Карточная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Драфт карт",
+      "Одновременный выбор действий",
+      "Сбор сетов",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 7,
@@ -37,7 +49,19 @@
     "description": "Игроки добывают и обменивают ресурсы, строят дороги, поселения и города и стараются первыми набрать нужное количество победных очков.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/13/catan | https://www.catan.com/understand-catan/game-rules"
+    "source_urls": "https://boardgamegeek.com/boardgame/13/catan | https://www.catan.com/understand-catan/game-rules",
+    "genres": [
+      "Еврогейм",
+      "Семейная",
+      "Стратегическая",
+      "Экономическая"
+    ],
+    "mechanics": [
+      "Броски кубиков",
+      "Построение маршрутов",
+      "Торговля",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 10,
@@ -57,7 +81,17 @@
     "description": "Игроки собирают цветные карты вагонов, строят железнодорожные маршруты по Северной Америке и Европе и проводя дорогу через крупнейшие города мира",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://www.daysofwonder.com/game/ticket-to-ride/ | https://www.daysofwonder.com/game/ticket-to-ride-usa-1910/"
+    "source_urls": "https://www.daysofwonder.com/game/ticket-to-ride/ | https://www.daysofwonder.com/game/ticket-to-ride-usa-1910/",
+    "genres": [
+      "Еврогейм",
+      "Семейная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Менеджмент карт",
+      "Построение маршрутов",
+      "Сбор сетов"
+    ]
   },
   {
     "id": 24,
@@ -77,7 +111,19 @@
     "description": "Игроки развивают фермы, выращивают урожай, разводят животных, расширяют семьи и стараются обеспечить их пищей.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/31260/agricola"
+    "source_urls": "https://boardgamegeek.com/boardgame/31260/agricola",
+    "genres": [
+      "Еврогейм",
+      "Стратегическая",
+      "Хардкорная",
+      "Экономическая"
+    ],
+    "mechanics": [
+      "Драфт карт",
+      "Построение личной области",
+      "Размещение рабочих",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 15,
@@ -97,7 +143,17 @@
     "description": "Абстрактная игра, в которой игроки выбирают цветные плитки и составляют из них узоры на стенах дворца.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/230802/azul"
+    "source_urls": "https://boardgamegeek.com/boardgame/230802/azul",
+    "genres": [
+      "Абстрактная",
+      "Семейная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Выкладывание тайлов",
+      "Открытый драфт",
+      "Сбор сетов"
+    ]
   },
   {
     "id": 23,
@@ -117,7 +173,19 @@
     "description": "Экономическая стратегия об индустриальной революции, где игроки создают предприятия и транспортные сети и используют общую экономику.",
     "available_now": 1,
     "DLC": 0,
-    "source_urls": "https://boardgamegeek.com/boardgame/224517/brass-birmingham"
+    "source_urls": "https://boardgamegeek.com/boardgame/224517/brass-birmingham",
+    "genres": [
+      "Еврогейм",
+      "Стратегическая",
+      "Хардкорная",
+      "Экономическая"
+    ],
+    "mechanics": [
+      "Менеджмент карт",
+      "Построение движка",
+      "Построение маршрутов",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 1,
@@ -137,7 +205,19 @@
     "description": "Карточная игра со скрытыми ролями на Диком Западе: Шериф и его помощники сражаются с бандитами, а Ренегат преследует собственную цель победы.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/3955/bang"
+    "source_urls": "https://boardgamegeek.com/boardgame/3955/bang",
+    "genres": [
+      "Вечериночная",
+      "Карточная",
+      "Социальная"
+    ],
+    "mechanics": [
+      "Блеф",
+      "Выбывание игроков",
+      "Помехи соперникам",
+      "Розыгрыш карт",
+      "Скрытые роли"
+    ]
   },
   {
     "id": 48,
@@ -157,7 +237,19 @@
     "description": "Игроки перегоняют стада в Канзас-Сити, улучшают колоды скота, строят здания и развивают железнодорожные маршруты.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/193738/great-western-trail"
+    "source_urls": "https://boardgamegeek.com/boardgame/193738/great-western-trail",
+    "genres": [
+      "Еврогейм",
+      "Стратегическая",
+      "Экономическая"
+    ],
+    "mechanics": [
+      "Pick-up and Deliver",
+      "Передвижение по карте",
+      "Построение колоды",
+      "Сбор сетов",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 6,
@@ -177,7 +269,18 @@
     "description": "Быстрая карточная игра, где нужно избегать карт «Взрывных котят», используя обезвреживание, атаки, пропуски хода и другие мешающие действия.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/172225/exploding-kittens | https://www.explodingkittens.com/pages/rules-kittens"
+    "source_urls": "https://boardgamegeek.com/boardgame/172225/exploding-kittens | https://www.explodingkittens.com/pages/rules-kittens",
+    "genres": [
+      "Вечериночная",
+      "Карточная",
+      "Филлер"
+    ],
+    "mechanics": [
+      "Выбывание игроков",
+      "Менеджмент карт",
+      "Помехи соперникам",
+      "Розыгрыш карт"
+    ]
   },
   {
     "id": 45,
@@ -197,7 +300,18 @@
     "description": "Игроки развивают винодельческие хозяйства, выращивают виноград, производят вино и выполняют заказы покупателей.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/183394/viticulture-essential-edition"
+    "source_urls": "https://boardgamegeek.com/boardgame/183394/viticulture-essential-edition",
+    "genres": [
+      "Еврогейм",
+      "Стратегическая",
+      "Экономическая"
+    ],
+    "mechanics": [
+      "Выполнение заказов",
+      "Менеджмент карт",
+      "Размещение рабочих",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 8,
@@ -217,7 +331,16 @@
     "description": "Игроки управляют загруженными кафе, перемещаются по сетке с ингредиентами и стараются быстро выполнять заказы, пока просрочки не начали приносить штрафы.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/377061/coffee-rush | https://boardgamegeek.com/boardgame/411435/coffee-rush-piece-of-cake"
+    "source_urls": "https://boardgamegeek.com/boardgame/377061/coffee-rush | https://boardgamegeek.com/boardgame/411435/coffee-rush-piece-of-cake",
+    "genres": [
+      "Семейная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Pick-up and Deliver",
+      "Выполнение заказов",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 71,
@@ -237,7 +360,9 @@
     "description": "Используйте подсказки, чтобы определить животное, маскировку и место на своей скрытой карте. Победит самый быстрый сыщик.",
     "available_now": null,
     "DLC": null,
-    "source_urls": "https://gamewright.com/product/deduckto"
+    "source_urls": "https://gamewright.com/product/deduckto",
+    "genres": [],
+    "mechanics": []
   },
   {
     "id": 55,
@@ -257,7 +382,17 @@
     "description": "Команды передают зашифрованные подсказки своим игрокам и одновременно пытаются перехватить код соперников.",
     "available_now": 1,
     "DLC": 0,
-    "source_urls": "https://boardgamegeek.com/boardgame/225694/decrypto"
+    "source_urls": "https://boardgamegeek.com/boardgame/225694/decrypto",
+    "genres": [
+      "Вечериночная",
+      "Детективная",
+      "Социальная"
+    ],
+    "mechanics": [
+      "Ассоциации слов",
+      "Дедукция",
+      "Командная игра"
+    ]
   },
   {
     "id": 59,
@@ -277,7 +412,17 @@
     "description": "Два торговца покупают, продают и обменивают товары на рынке, стараясь стать личным купцом махараджи.",
     "available_now": 1,
     "DLC": 0,
-    "source_urls": "https://boardgamegeek.com/boardgame/54043/jaipur"
+    "source_urls": "https://boardgamegeek.com/boardgame/54043/jaipur",
+    "genres": [
+      "Дуэльная",
+      "Карточная",
+      "Семейная"
+    ],
+    "mechanics": [
+      "Менеджмент карт",
+      "Открытый драфт",
+      "Сбор сетов"
+    ]
   },
   {
     "id": 18,
@@ -297,7 +442,17 @@
     "description": "Игроки придумывают ассоциации к необычным иллюстрациям и пытаются угадать карту рассказчика среди карт остальных участников.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/39856/dixit"
+    "source_urls": "https://boardgamegeek.com/boardgame/39856/dixit",
+    "genres": [
+      "Вечериночная",
+      "Семейная",
+      "Социальная"
+    ],
+    "mechanics": [
+      "Ассоциации слов",
+      "Голосование",
+      "Розыгрыш карт"
+    ]
   },
   {
     "id": 64,
@@ -317,7 +472,9 @@
     "description": "Используйте способности овощей, чтобы избавиться от артишоков в своей колоде. Небольшая карточная игра о продуманных комбинациях.",
     "available_now": null,
     "DLC": null,
-    "source_urls": "https://gamewright.com/product/Abandon-All-Artichokes"
+    "source_urls": "https://gamewright.com/product/Abandon-All-Artichokes",
+    "genres": [],
+    "mechanics": []
   },
   {
     "id": 67,
@@ -337,7 +494,9 @@
     "description": "Собирайте комбинации карт, получайте кубики и отправляйтесь против лесных чудовищ. Выбирайте между подготовкой и рискованной атакой.",
     "available_now": null,
     "DLC": null,
-    "source_urls": "https://gamewright.com/product/Dragonwood"
+    "source_urls": "https://gamewright.com/product/Dragonwood",
+    "genres": [],
+    "mechanics": []
   },
   {
     "id": 37,
@@ -357,7 +516,18 @@
     "description": "Сыщики путешествуют по миру, расследуют загадочные события и пытаются предотвратить пробуждение Древнего.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/146021/eldritch-horror"
+    "source_urls": "https://boardgamegeek.com/boardgame/146021/eldritch-horror",
+    "genres": [
+      "Америтреш",
+      "Кооперативная",
+      "Приключенческая"
+    ],
+    "mechanics": [
+      "Броски кубиков",
+      "Кооперативное принятие решений",
+      "Передвижение по карте",
+      "Переменная сила игроков"
+    ]
   },
   {
     "id": 32,
@@ -377,7 +547,19 @@
     "description": "Игроки возглавляют дома вселенной Дюны, размещают агентов, собирают колоду и борются за влияние и контроль над Арракисом.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/316554/dune-imperium"
+    "source_urls": "https://boardgamegeek.com/boardgame/316554/dune-imperium",
+    "genres": [
+      "Еврогейм",
+      "Стратегическая",
+      "Хардкорная"
+    ],
+    "mechanics": [
+      "Контроль территории",
+      "Менеджмент карт",
+      "Переменная сила игроков",
+      "Построение колоды",
+      "Размещение рабочих"
+    ]
   },
   {
     "id": 46,
@@ -397,7 +579,18 @@
     "description": "Игроки развивают владения в Бургундии, используя результаты бросков кубиков для выбора и размещения различных тайлов.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/84876/the-castles-of-burgundy"
+    "source_urls": "https://boardgamegeek.com/boardgame/84876/the-castles-of-burgundy",
+    "genres": [
+      "Еврогейм",
+      "Семейная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Броски кубиков",
+      "Выкладывание тайлов",
+      "Менеджмент карт",
+      "Сбор сетов"
+    ]
   },
   {
     "id": 62,
@@ -417,7 +610,9 @@
     "description": "Исследуйте занесённый песком город, найдите части летательного аппарата и спаситесь вместе, пока не закончилась вода.",
     "available_now": null,
     "DLC": null,
-    "source_urls": "https://gamewright.com/product/Forbidden-Desert"
+    "source_urls": "https://gamewright.com/product/Forbidden-Desert",
+    "genres": [],
+    "mechanics": []
   },
   {
     "id": 61,
@@ -437,7 +632,9 @@
     "description": "Соберите четыре сокровища и покиньте остров до того, как он уйдёт под воду. Каждый участник помогает общей экспедиции.",
     "available_now": null,
     "DLC": null,
-    "source_urls": "https://gamewright.com/product/Forbidden-Island"
+    "source_urls": "https://gamewright.com/product/Forbidden-Island",
+    "genres": [],
+    "mechanics": []
   },
   {
     "id": 60,
@@ -457,7 +654,18 @@
     "description": "Игроки строят космические флоты, покупают новые карты и создают комбинации для уничтожения базы противника.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/147020/star-realms"
+    "source_urls": "https://boardgamegeek.com/boardgame/147020/star-realms",
+    "genres": [
+      "Дуэльная",
+      "Карточная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Менеджмент карт",
+      "Открытый драфт",
+      "Помехи соперникам",
+      "Построение колоды"
+    ]
   },
   {
     "id": 4,
@@ -477,7 +685,19 @@
     "description": "Игроки возглавляют Великие дома Вестероса, перемещают армии, заключают союзы, тайно отдают приказы и борются за контроль над ключевыми замками.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/103343/a-game-of-thrones-the-board-game-second-edition | https://boardgamegeek.com/boardgame/257496/a-game-of-thrones-the-board-game-second-edition-mo"
+    "source_urls": "https://boardgamegeek.com/boardgame/103343/a-game-of-thrones-the-board-game-second-edition | https://boardgamegeek.com/boardgame/257496/a-game-of-thrones-the-board-game-second-edition-mo",
+    "genres": [
+      "Америтреш",
+      "Варгейм",
+      "Стратегическая",
+      "Хардкорная"
+    ],
+    "mechanics": [
+      "Контроль территории",
+      "Одновременный выбор действий",
+      "Переменная сила игроков",
+      "Программирование действий"
+    ]
   },
   {
     "id": 11,
@@ -497,7 +717,17 @@
     "description": "Игроки по одному тайлу создают общий средневековый ландшафт и размещают миплов, чтобы получать очки за города, дороги, монастыри и поля.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/822/carcassonne | https://boardgamegeek.com/boardgame/822/carcassonne/expansions"
+    "source_urls": "https://boardgamegeek.com/boardgame/822/carcassonne | https://boardgamegeek.com/boardgame/822/carcassonne/expansions",
+    "genres": [
+      "Еврогейм",
+      "Семейная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Выкладывание тайлов",
+      "Контроль территории",
+      "Размещение миплов"
+    ]
   },
   {
     "id": 30,
@@ -517,7 +747,17 @@
     "description": "Игроки создают природные территории Тихоокеанского Северо-Запада и размещают животных так, чтобы выполнять различные условия подсчёта очков.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/295947/cascadia"
+    "source_urls": "https://boardgamegeek.com/boardgame/295947/cascadia",
+    "genres": [
+      "Абстрактная",
+      "Семейная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Выкладывание тайлов",
+      "Открытый драфт",
+      "Сбор сетов"
+    ]
   },
   {
     "id": 66,
@@ -537,7 +777,9 @@
     "description": "Отмечайте числа в цветных рядах по результатам бросков. В каждом ходе участвуют все, а порядок отметок требует внимания.",
     "available_now": null,
     "DLC": null,
-    "source_urls": "https://gamewright.com/product/Qwixx"
+    "source_urls": "https://gamewright.com/product/Qwixx",
+    "genres": [],
+    "mechanics": []
   },
   {
     "id": 34,
@@ -557,7 +799,18 @@
     "description": "Игроки собирают колоды, исследуют подземелье, похищают сокровища и стараются выбраться раньше, чем проснётся дракон.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/201808/clank-a-deck-building-adventure"
+    "source_urls": "https://boardgamegeek.com/boardgame/201808/clank-a-deck-building-adventure",
+    "genres": [
+      "Карточная",
+      "Приключенческая",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Push Your Luck",
+      "Менеджмент карт",
+      "Передвижение по карте",
+      "Построение колоды"
+    ]
   },
   {
     "id": 3,
@@ -577,7 +830,16 @@
     "description": "Две команды пытаются отгадать своих агентов по однословным подсказкам, избегая агентов соперника и убийцы.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/178900/codenames | https://boardgamegeek.com/boardgame/178900/codenames/expansions"
+    "source_urls": "https://boardgamegeek.com/boardgame/178900/codenames | https://boardgamegeek.com/boardgame/178900/codenames/expansions",
+    "genres": [
+      "Вечериночная",
+      "Социальная"
+    ],
+    "mechanics": [
+      "Ассоциации слов",
+      "Дедукция",
+      "Командная игра"
+    ]
   },
   {
     "id": 42,
@@ -597,7 +859,18 @@
     "description": "Игроки развивают торговые сети в Римской империи, производят товары и используют карты персонажей для выполнения действий.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/124361/concordia"
+    "source_urls": "https://boardgamegeek.com/boardgame/124361/concordia",
+    "genres": [
+      "Еврогейм",
+      "Стратегическая",
+      "Экономическая"
+    ],
+    "mechanics": [
+      "Менеджмент карт",
+      "Передвижение по карте",
+      "Сбор сетов",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 21,
@@ -617,7 +890,19 @@
     "description": "Несколько полностью асимметричных фракций сражаются за власть в лесу, причём каждая получает очки и выполняет действия по собственным правилам.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/237182/root"
+    "source_urls": "https://boardgamegeek.com/boardgame/237182/root",
+    "genres": [
+      "Америтреш",
+      "Варгейм",
+      "Стратегическая",
+      "Хардкорная"
+    ],
+    "mechanics": [
+      "Контроль территории",
+      "Передвижение по карте",
+      "Переменная сила игроков",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 70,
@@ -637,7 +922,9 @@
     "description": "Собирайте карты, исследуйте земли бросками кубиков и размещайте искателей приключений. Большинство в локации приносит сокровища.",
     "available_now": null,
     "DLC": null,
-    "source_urls": "https://gamewright.com/product/dragonrealm"
+    "source_urls": "https://gamewright.com/product/dragonrealm",
+    "genres": [],
+    "mechanics": []
   },
   {
     "id": 36,
@@ -657,7 +944,18 @@
     "description": "Кланы викингов сражаются за территории, выполняют задания, развивают войска и получают славу перед наступлением Рагнарёка.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/170216/blood-rage"
+    "source_urls": "https://boardgamegeek.com/boardgame/170216/blood-rage",
+    "genres": [
+      "Америтреш",
+      "Варгейм",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Драфт карт",
+      "Контроль территории",
+      "Переменная сила игроков",
+      "Сбор сетов"
+    ]
   },
   {
     "id": 20,
@@ -677,7 +975,18 @@
     "description": "Игроки развивают собственные заповедники, заселяют их птицами и создают комбинации способностей для получения ресурсов и победных очков.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/266192/wingspan"
+    "source_urls": "https://boardgamegeek.com/boardgame/266192/wingspan",
+    "genres": [
+      "Еврогейм",
+      "Семейная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Построение движка",
+      "Розыгрыш карт",
+      "Сбор сетов",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 51,
@@ -697,7 +1006,16 @@
     "description": "Игроки управляют фантастическими народами, захватывают территории и вовремя отправляют старые цивилизации в упадок.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/40692/small-world"
+    "source_urls": "https://boardgamegeek.com/boardgame/40692/small-world",
+    "genres": [
+      "Америтреш",
+      "Семейная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Контроль территории",
+      "Переменная сила игроков"
+    ]
   },
   {
     "id": 2,
@@ -717,7 +1035,18 @@
     "description": "Юмористическая карточная игра про поход в подземелье: игроки побеждают монстров, собирают сокровища, повышают уровень и постоянно мешают друг другу.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/1927/munchkin | https://munchkin.game/"
+    "source_urls": "https://boardgamegeek.com/boardgame/1927/munchkin | https://munchkin.game/",
+    "genres": [
+      "Вечериночная",
+      "Карточная",
+      "Приключенческая"
+    ],
+    "mechanics": [
+      "Push Your Luck",
+      "Менеджмент карт",
+      "Помехи соперникам",
+      "Розыгрыш карт"
+    ]
   },
   {
     "id": 57,
@@ -737,7 +1066,17 @@
     "description": "Игроки исследуют огромную карту города и по визуальным уликам восстанавливают последовательность преступлений.",
     "available_now": 1,
     "DLC": 0,
-    "source_urls": "https://boardgamegeek.com/boardgame/318977/micromacro-crime-city"
+    "source_urls": "https://boardgamegeek.com/boardgame/318977/micromacro-crime-city",
+    "genres": [
+      "Детективная",
+      "Кооперативная",
+      "Семейная"
+    ],
+    "mechanics": [
+      "Дедукция",
+      "Кооперативное принятие решений",
+      "Распознавание образов"
+    ]
   },
   {
     "id": 56,
@@ -757,7 +1096,16 @@
     "description": "Один игрок в роли призрака передаёт остальным участникам подсказки с помощью иллюстрированных карт, чтобы раскрыть преступление.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/181304/mysterium"
+    "source_urls": "https://boardgamegeek.com/boardgame/181304/mysterium",
+    "genres": [
+      "Вечериночная",
+      "Детективная",
+      "Кооперативная"
+    ],
+    "mechanics": [
+      "Ассоциации слов",
+      "Кооперативное принятие решений"
+    ]
   },
   {
     "id": 13,
@@ -777,7 +1125,18 @@
     "description": "Игроки покупают, обменивают и застраивают недвижимость, получают аренду и пытаются довести соперников до банкротства.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/1406/monopoly | https://boardgamegeek.com/boardgame/1406/monopoly/expansions"
+    "source_urls": "https://boardgamegeek.com/boardgame/1406/monopoly | https://boardgamegeek.com/boardgame/1406/monopoly/expansions",
+    "genres": [
+      "Семейная",
+      "Экономическая"
+    ],
+    "mechanics": [
+      "Брось и ходи",
+      "Выбывание игроков",
+      "Сбор сетов",
+      "Торговля",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 22,
@@ -797,7 +1156,20 @@
     "description": "Большая кооперативная кампания, в которой герои проходят сценарии, сражаются с противниками, развивают персонажей и принимают решения, меняющие мир.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/174430/gloomhaven"
+    "source_urls": "https://boardgamegeek.com/boardgame/174430/gloomhaven",
+    "genres": [
+      "Америтреш",
+      "Данжен-кроулер",
+      "Кооперативная",
+      "Приключенческая",
+      "Хардкорная"
+    ],
+    "mechanics": [
+      "Исследование",
+      "Кооперативное принятие решений",
+      "Менеджмент карт",
+      "Переменная сила игроков"
+    ]
   },
   {
     "id": 69,
@@ -817,7 +1189,9 @@
     "description": "Еноты собирают находки и прячут запасы. Бросайте кубик ради дополнительных действий, но вовремя остановитесь, чтобы не потерять ход.",
     "available_now": null,
     "DLC": null,
-    "source_urls": "https://gamewright.com/product/Trash-Pandas"
+    "source_urls": "https://gamewright.com/product/Trash-Pandas",
+    "genres": [],
+    "mechanics": []
   },
   {
     "id": 35,
@@ -837,7 +1211,19 @@
     "description": "Экипаж повреждённого космического корабля пытается выжить среди враждебных существ, выполняя при этом собственные тайные цели.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/167355/nemesis"
+    "source_urls": "https://boardgamegeek.com/boardgame/167355/nemesis",
+    "genres": [
+      "Америтреш",
+      "Приключенческая",
+      "Хардкорная"
+    ],
+    "mechanics": [
+      "Броски кубиков",
+      "Менеджмент карт",
+      "Модульное поле",
+      "Переменная сила игроков",
+      "Скрытые роли"
+    ]
   },
   {
     "id": 9,
@@ -857,7 +1243,18 @@
     "description": "Необычный аналог мафии: один из игроков становится Нечто и пытается заразить остальных, а люди должны вычислить и устранить его до полного заражения группы.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://hobbygames.ru/nechto-iz-glubokoj-bezdni | https://pendragongamestudio.com/blog/project/stay-away/ | https://boardgamegeek.com/boardgame/158392/stay-away"
+    "source_urls": "https://hobbygames.ru/nechto-iz-glubokoj-bezdni | https://pendragongamestudio.com/blog/project/stay-away/ | https://boardgamegeek.com/boardgame/158392/stay-away",
+    "genres": [
+      "Вечериночная",
+      "Карточная",
+      "Социальная"
+    ],
+    "mechanics": [
+      "Выбывание игроков",
+      "Дедукция",
+      "Розыгрыш карт",
+      "Скрытые роли"
+    ]
   },
   {
     "id": 29,
@@ -877,7 +1274,19 @@
     "description": "Игроки проектируют современные зоопарки, размещают животных, строят вольеры и поддерживают природоохранные проекты.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/342942/ark-nova"
+    "source_urls": "https://boardgamegeek.com/boardgame/342942/ark-nova",
+    "genres": [
+      "Еврогейм",
+      "Стратегическая",
+      "Хардкорная",
+      "Экономическая"
+    ],
+    "mechanics": [
+      "Менеджмент карт",
+      "Построение движка",
+      "Построение личной области",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 44,
@@ -897,7 +1306,17 @@
     "description": "Игроки собирают последователей разных профессий и используют их для торговли, строительства и развития во Франции.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/164928/orleans"
+    "source_urls": "https://boardgamegeek.com/boardgame/164928/orleans",
+    "genres": [
+      "Еврогейм",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Pick-up and Deliver",
+      "Передвижение по карте",
+      "Сбор сетов",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 39,
@@ -917,7 +1336,18 @@
     "description": "Игроки управляют духами острова и совместно защищают землю от колонизаторов, комбинируя уникальные способности.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/162886/spirit-island"
+    "source_urls": "https://boardgamegeek.com/boardgame/162886/spirit-island",
+    "genres": [
+      "Кооперативная",
+      "Стратегическая",
+      "Хардкорная"
+    ],
+    "mechanics": [
+      "Контроль территории",
+      "Кооперативное принятие решений",
+      "Менеджмент карт",
+      "Переменная сила игроков"
+    ]
   },
   {
     "id": 16,
@@ -937,7 +1367,18 @@
     "description": "Игроки становятся специалистами, которые совместно борются со вспышками заболеваний по всему миру и пытаются создать лекарства.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/30549/pandemic"
+    "source_urls": "https://boardgamegeek.com/boardgame/30549/pandemic",
+    "genres": [
+      "Кооперативная",
+      "Семейная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Кооперативное принятие решений",
+      "Менеджмент карт",
+      "Передвижение по карте",
+      "Переменная сила игроков"
+    ]
   },
   {
     "id": 28,
@@ -957,7 +1398,17 @@
     "description": "Кооперативная кампания на основе Пандемии, в которой решения игроков и результаты партий необратимо изменяют компоненты, правила и игровой мир.",
     "available_now": 1,
     "DLC": 0,
-    "source_urls": "https://boardgamegeek.com/boardgame/161936/pandemic-legacy-season-1"
+    "source_urls": "https://boardgamegeek.com/boardgame/161936/pandemic-legacy-season-1",
+    "genres": [
+      "Кооперативная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Legacy",
+      "Кооперативное принятие решений",
+      "Менеджмент карт",
+      "Переменная сила игроков"
+    ]
   },
   {
     "id": 52,
@@ -977,7 +1428,18 @@
     "description": "Монстры бросают кубики, атакуют соперников, накапливают энергию и борются за контроль над Токио.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/70323/king-of-tokyo"
+    "source_urls": "https://boardgamegeek.com/boardgame/70323/king-of-tokyo",
+    "genres": [
+      "Вечериночная",
+      "Семейная",
+      "Филлер"
+    ],
+    "mechanics": [
+      "Push Your Luck",
+      "Броски кубиков",
+      "Выбывание игроков",
+      "Помехи соперникам"
+    ]
   },
   {
     "id": 19,
@@ -997,7 +1459,19 @@
     "description": "Игроки управляют корпорациями, разыгрывают проекты и развивают производство, совместно изменяя условия на Марсе, но соревнуясь за победные очки.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/167791/terraforming-mars"
+    "source_urls": "https://boardgamegeek.com/boardgame/167791/terraforming-mars",
+    "genres": [
+      "Еврогейм",
+      "Стратегическая",
+      "Хардкорная",
+      "Экономическая"
+    ],
+    "mechanics": [
+      "Построение движка",
+      "Построение личной области",
+      "Розыгрыш карт",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 54,
@@ -1017,7 +1491,16 @@
     "description": "Игроки пишут подсказки, чтобы помочь участнику отгадать слово, но одинаковые подсказки удаляются.",
     "available_now": 1,
     "DLC": 0,
-    "source_urls": "https://boardgamegeek.com/boardgame/254640/just-one"
+    "source_urls": "https://boardgamegeek.com/boardgame/254640/just-one",
+    "genres": [
+      "Вечериночная",
+      "Семейная",
+      "Социальная"
+    ],
+    "mechanics": [
+      "Ассоциации слов",
+      "Командная игра"
+    ]
   },
   {
     "id": 43,
@@ -1037,7 +1520,18 @@
     "description": "Игроки развивают плантации и города, производят товары и отправляют их в Старый Свет.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/3076/puerto-rico"
+    "source_urls": "https://boardgamegeek.com/boardgame/3076/puerto-rico",
+    "genres": [
+      "Еврогейм",
+      "Стратегическая",
+      "Экономическая"
+    ],
+    "mechanics": [
+      "Выбор ролей",
+      "Выполнение заказов",
+      "Построение движка",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 25,
@@ -1057,7 +1551,17 @@
     "description": "Два игрока собирают лоскутные одеяла, покупая детали различной формы и стараясь эффективно заполнить личное поле.",
     "available_now": 1,
     "DLC": 0,
-    "source_urls": "https://boardgamegeek.com/boardgame/163412/patchwork"
+    "source_urls": "https://boardgamegeek.com/boardgame/163412/patchwork",
+    "genres": [
+      "Абстрактная",
+      "Дуэльная",
+      "Семейная"
+    ],
+    "mechanics": [
+      "Выкладывание тайлов",
+      "Открытый драфт",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 50,
@@ -1077,7 +1581,17 @@
     "description": "Игроки перемещают группы миплов между территориями султаната и используют способности различных племён.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/157354/five-tribes-the-djinns-of-naqala"
+    "source_urls": "https://boardgamegeek.com/boardgame/157354/five-tribes-the-djinns-of-naqala",
+    "genres": [
+      "Еврогейм",
+      "Семейная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Аукцион",
+      "Переменная сила игроков",
+      "Сбор сетов"
+    ]
   },
   {
     "id": 17,
@@ -1097,7 +1611,18 @@
     "description": "Игроки собирают драгоценные камни, приобретают карты развития и постепенно создают экономический движок, приносящий престиж.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/148228/splendor"
+    "source_urls": "https://boardgamegeek.com/boardgame/148228/splendor",
+    "genres": [
+      "Еврогейм",
+      "Семейная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Открытый драфт",
+      "Построение движка",
+      "Сбор сетов",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 33,
@@ -1117,7 +1642,19 @@
     "description": "Игроки исследуют неизвестный остров, находят древние артефакты, изучают храмы и развивают собственную экспедицию.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/312484/lost-ruins-of-arnak"
+    "source_urls": "https://boardgamegeek.com/boardgame/312484/lost-ruins-of-arnak",
+    "genres": [
+      "Еврогейм",
+      "Приключенческая",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Исследование",
+      "Менеджмент карт",
+      "Построение колоды",
+      "Размещение рабочих",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 40,
@@ -1137,7 +1674,19 @@
     "description": "Фракции альтернативной Европы развивают экономику, территории и технологии и соперничают за влияние.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/169786/scythe"
+    "source_urls": "https://boardgamegeek.com/boardgame/169786/scythe",
+    "genres": [
+      "4X",
+      "Еврогейм",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Контроль территории",
+      "Передвижение по карте",
+      "Переменная сила игроков",
+      "Построение движка",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 27,
@@ -1157,7 +1706,18 @@
     "description": "Игроки тайно делятся на сторонников Артура и приспешников Мордреда и пытаются определить союзников и сорвать планы противоположной стороны.",
     "available_now": 1,
     "DLC": 0,
-    "source_urls": "https://boardgamegeek.com/boardgame/128882/the-resistance-avalon"
+    "source_urls": "https://boardgamegeek.com/boardgame/128882/the-resistance-avalon",
+    "genres": [
+      "Вечериночная",
+      "Социальная"
+    ],
+    "mechanics": [
+      "Блеф",
+      "Голосование",
+      "Дедукция",
+      "Командная игра",
+      "Скрытые роли"
+    ]
   },
   {
     "id": 65,
@@ -1177,7 +1737,9 @@
     "description": "Разыгрывайте королей, рыцарей и волшебные карты, чтобы разбудить и собрать королев. Соперники могут вмешаться в ваши планы.",
     "available_now": null,
     "DLC": null,
-    "source_urls": "https://gamewright.com/product/Sleeping-Queens"
+    "source_urls": "https://gamewright.com/product/Sleeping-Queens",
+    "genres": [],
+    "mechanics": []
   },
   {
     "id": 68,
@@ -1197,7 +1759,9 @@
     "description": "Королевы отправляются спасать королей. Ищите помощников и справляйтесь с волшебными препятствиями в новой самостоятельной игре.",
     "available_now": null,
     "DLC": null,
-    "source_urls": "https://gamewright.com/product/Sleeping-Queens-2"
+    "source_urls": "https://gamewright.com/product/Sleeping-Queens-2",
+    "genres": [],
+    "mechanics": []
   },
   {
     "id": 63,
@@ -1217,7 +1781,9 @@
     "description": "Выбирайте карту из руки и передавайте остальные соседу. Собирайте сочетания блюд, чтобы набрать больше очков.",
     "available_now": null,
     "DLC": null,
-    "source_urls": "https://gamewright.com/product/Sushi-Go"
+    "source_urls": "https://gamewright.com/product/Sushi-Go",
+    "genres": [],
+    "mechanics": []
   },
   {
     "id": 53,
@@ -1237,7 +1803,18 @@
     "description": "Игроки одновременно выбирают карты блюд и передают оставшиеся карты соседям, стараясь собрать наиболее выгодные комбинации.",
     "available_now": 1,
     "DLC": 0,
-    "source_urls": "https://boardgamegeek.com/boardgame/192291/sushi-go-party"
+    "source_urls": "https://boardgamegeek.com/boardgame/192291/sushi-go-party",
+    "genres": [
+      "Вечериночная",
+      "Карточная",
+      "Семейная"
+    ],
+    "mechanics": [
+      "Драфт карт",
+      "Менеджмент карт",
+      "Одновременный выбор действий",
+      "Сбор сетов"
+    ]
   },
   {
     "id": 26,
@@ -1257,7 +1834,18 @@
     "description": "Минималистичная карточная игра, в которой игроки пытаются доставить письмо принцессе, используя способности персонажей и вычисляя карты соперников.",
     "available_now": 1,
     "DLC": 0,
-    "source_urls": "https://boardgamegeek.com/boardgame/277085/love-letter"
+    "source_urls": "https://boardgamegeek.com/boardgame/277085/love-letter",
+    "genres": [
+      "Карточная",
+      "Социальная",
+      "Филлер"
+    ],
+    "mechanics": [
+      "Блеф",
+      "Выбывание игроков",
+      "Дедукция",
+      "Менеджмент карт"
+    ]
   },
   {
     "id": 72,
@@ -1277,7 +1865,9 @@
     "description": "Ищите одинаковые узоры среди открытых карт и успевайте забрать совпадение раньше других. Простая разминка для внимания.",
     "available_now": null,
     "DLC": null,
-    "source_urls": "https://gamewright.com/product/twin-it"
+    "source_urls": "https://gamewright.com/product/twin-it",
+    "genres": [],
+    "mechanics": []
   },
   {
     "id": 49,
@@ -1297,7 +1887,17 @@
     "description": "Игроки управляют рабочими, собирают ресурсы, развивают технологии и участвуют в строительстве великой пирамиды.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/229853/teotihuacan-city-of-gods"
+    "source_urls": "https://boardgamegeek.com/boardgame/229853/teotihuacan-city-of-gods",
+    "genres": [
+      "Еврогейм",
+      "Стратегическая",
+      "Хардкорная"
+    ],
+    "mechanics": [
+      "Размещение рабочих",
+      "Сбор сетов",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 38,
@@ -1317,7 +1917,17 @@
     "description": "Сыщики проходят связанные сценарии, собирают собственные колоды и сталкиваются с последствиями принятых решений.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/205637/arkham-horror-the-card-game"
+    "source_urls": "https://boardgamegeek.com/boardgame/205637/arkham-horror-the-card-game",
+    "genres": [
+      "Карточная",
+      "Кооперативная",
+      "Приключенческая"
+    ],
+    "mechanics": [
+      "Кооперативное принятие решений",
+      "Менеджмент карт",
+      "Очки действий"
+    ]
   },
   {
     "id": 58,
@@ -1337,7 +1947,17 @@
     "description": "Игроки совместно собирают фейерверки из карт, но каждый видит карты остальных участников и не видит собственные.",
     "available_now": 1,
     "DLC": 0,
-    "source_urls": "https://boardgamegeek.com/boardgame/98778/hanabi"
+    "source_urls": "https://boardgamegeek.com/boardgame/98778/hanabi",
+    "genres": [
+      "Карточная",
+      "Кооперативная",
+      "Филлер"
+    ],
+    "mechanics": [
+      "Кооперативное принятие решений",
+      "Менеджмент карт",
+      "Память"
+    ]
   },
   {
     "id": 5,
@@ -1357,7 +1977,18 @@
     "description": "Игроки строят средневековые города и каждый раунд тайно выбирают новую роль персонажа, чтобы получить особые способности, чтобы получить преимущество или помешать соперникам.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/205398/citadels | https://boardgamegeek.com/boardgame/13291/citadels-the-dark-city"
+    "source_urls": "https://boardgamegeek.com/boardgame/205398/citadels | https://boardgamegeek.com/boardgame/13291/citadels-the-dark-city",
+    "genres": [
+      "Карточная",
+      "Социальная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Блеф",
+      "Выбор ролей",
+      "Драфт карт",
+      "Сбор сетов"
+    ]
   },
   {
     "id": 47,
@@ -1377,7 +2008,17 @@
     "description": "Игроки размещают рабочих на вращающихся шестернях календаря майя и планируют действия на несколько ходов вперёд.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/126163/tzolkin-the-mayan-calendar"
+    "source_urls": "https://boardgamegeek.com/boardgame/126163/tzolkin-the-mayan-calendar",
+    "genres": [
+      "Еврогейм",
+      "Стратегическая",
+      "Хардкорная"
+    ],
+    "mechanics": [
+      "Очки действий",
+      "Размещение рабочих",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 12,
@@ -1397,7 +2038,17 @@
     "description": "Игроки управляют командами пиратов, исследуют случайно собранный остров, ищут сокровища и стараются доставить на свой корабль больше золота, чем соперники.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://hobbygames.ru/shakal-obnovlennaja-versija | https://jackal.su/rules/all"
+    "source_urls": "https://hobbygames.ru/shakal-obnovlennaja-versija | https://jackal.su/rules/all",
+    "genres": [
+      "Приключенческая",
+      "Семейная",
+      "Стратегическая"
+    ],
+    "mechanics": [
+      "Pick-up and Deliver",
+      "Модульное поле",
+      "Передвижение по карте"
+    ]
   },
   {
     "id": 31,
@@ -1417,7 +2068,20 @@
     "description": "Игроки развивают лесные города, разыгрывают существ и здания, собирают ресурсы и создают комбинации карт.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/199792/everdell"
+    "source_urls": "https://boardgamegeek.com/boardgame/199792/everdell",
+    "genres": [
+      "Еврогейм",
+      "Семейная",
+      "Стратегическая",
+      "Экономическая"
+    ],
+    "mechanics": [
+      "Менеджмент карт",
+      "Построение движка",
+      "Построение личной области",
+      "Размещение рабочих",
+      "Управление ресурсами"
+    ]
   },
   {
     "id": 41,
@@ -1437,6 +2101,16 @@
     "description": "Игроки покупают электростанции, ресурсы и расширяют сети городов, стараясь построить наиболее эффективную энергетическую компанию.",
     "available_now": 1,
     "DLC": 1,
-    "source_urls": "https://boardgamegeek.com/boardgame/2651/power-grid"
+    "source_urls": "https://boardgamegeek.com/boardgame/2651/power-grid",
+    "genres": [
+      "Еврогейм",
+      "Стратегическая",
+      "Экономическая"
+    ],
+    "mechanics": [
+      "Аукцион",
+      "Построение маршрутов",
+      "Управление ресурсами"
+    ]
   }
 ]

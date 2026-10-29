@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parent
 def build():
     destination = ROOT / "dist"
     destination.mkdir(exist_ok=True)
-    for name in ("index.html", "app.js", "style.css"):
+    for name in ("index.html", "recommender.js", "app.js", "style.css"):
         text = (ROOT / "web" / name).read_text(encoding="utf-8")
         if name == "index.html":
             text = text.replace('href="/', 'href="./').replace('src="/', 'src="./')
